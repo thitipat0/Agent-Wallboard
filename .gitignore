@@ -126,3 +126,5 @@ Cargo.lock
 *.pid
 *.seed
 *.pid.lock
+
+/distnode_modules/
