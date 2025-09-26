@@ -1,0 +1,73 @@
+{
+  "name": "agent-wallboard",
+  "version": "1.0.0",
+  "description": "Real-time Agent Wallboard Desktop Application",
+  "main": "main.js",
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "homepage": "./",
+  
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win",
+    "build-mac": "electron-builder --mac", 
+    "build-linux": "electron-builder --linux",
+    "build-all": "electron-builder --win --mac --linux",
+    "pack": "electron-builder --dir"
+  },
+  
+  "devDependencies": {
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1"
+  },
+  
+  "dependencies": {},
+  
+  "build": {
+    "appId": "com.yourcompany.agent-wallboard",
+    "productName": "Agent Wallboard",
+    "copyright": "Copyright © 2025 Your Name",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js", 
+      "index.html",
+      "app.js",
+      "assets/**/*",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "assets",
+        "to": "assets"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.icns",
+      "category": "public.app-category.business"
+    },
+    "linux": {
+      "target": "deb",
+      "icon": "build/icon.png",
+      "category": "Office"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Agent Wallboard"
+    }
+  }
+}
