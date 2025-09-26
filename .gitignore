@@ -1,0 +1,128 @@
+# -----------------------------
+# OS-specific files
+# -----------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# -----------------------------
+# Logs
+# -----------------------------
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# -----------------------------
+# Environment variables
+# -----------------------------
+.env
+.env.*.local
+
+# -----------------------------
+# Dependency directories
+# -----------------------------
+node_modules/
+jspm_packages/
+
+# -----------------------------
+# Build output
+# -----------------------------
+dist/
+build/
+out/
+coverage/
+tmp/
+temp/
+
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+.eggs/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.tox/
+.mypy_cache/
+.pyre/
+
+# -----------------------------
+# Java
+# -----------------------------
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.ipr
+*.iws
+target/
+.gradle/
+build/
+.settings/
+.classpath
+.project
+
+# -----------------------------
+# C / C++
+# -----------------------------
+*.o
+*.obj
+*.dll
+*.so
+*.exe
+*.out
+
+# -----------------------------
+# PHP / Composer
+# -----------------------------
+vendor/
+composer.lock
+
+# -----------------------------
+# Go
+# -----------------------------
+bin/
+*.exe
+*.test
+*.out
+
+# -----------------------------
+# Rust
+# -----------------------------
+target/
+Cargo.lock
+
+# -----------------------------
+# IDE / Editor settings
+# -----------------------------
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+
+# -----------------------------
+# Misc
+# -----------------------------
+*.bak
+*.tmp
+*.swp
+*.swo
+*.pid
+*.seed
+*.pid.lock
