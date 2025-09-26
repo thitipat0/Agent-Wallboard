@@ -6,25 +6,24 @@
   "author": "Your Name <your.email@example.com>",
   "license": "MIT",
   "homepage": "./",
-  
   "scripts": {
     "start": "electron .",
     "dev": "electron . --dev",
     "build": "electron-builder",
     "build-win": "electron-builder --win",
-    "build-mac": "electron-builder --mac", 
+    "build-mac": "electron-builder --mac",
     "build-linux": "electron-builder --linux",
     "build-all": "electron-builder --win --mac --linux",
     "pack": "electron-builder --dir"
   },
-  
   "devDependencies": {
     "electron": "^28.1.0",
-    "electron-builder": "^24.9.1"
+    "electron-builder": "^24.13.3",
+    "electron-is-dev": "^3.0.1"
   },
-  
-  "dependencies": {},
-  
+  "dependencies": {
+    "electron-updater": "^6.6.2"
+  },
   "build": {
     "appId": "com.yourcompany.agent-wallboard",
     "productName": "Agent Wallboard",
@@ -35,7 +34,7 @@
     },
     "files": [
       "main.js",
-      "preload.js", 
+      "preload.js",
       "index.html",
       "app.js",
       "assets/**/*",
@@ -68,6 +67,13 @@
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "Agent Wallboard"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "your-username",
+        "repo": "agent-wallboard"
+      }
+    ]
   }
 }

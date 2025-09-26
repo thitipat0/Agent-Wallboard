@@ -1,6 +1,16 @@
+// app.js
+// โค้ดนี้จะใช้ใน Renderer Process
+// เพื่อสื่อสารกับ Main Process
+
 let agents = [];
 
-// โหลดข้อมูล agents (Lab 8.2)
+const agentsGrid = document.getElementById('agents-grid');
+const availableCountEl = document.getElementById('available-count');
+const busyCountEl = document.getElementById('busy-count');
+const offlineCountEl = document.getElementById('offline-count');
+const currentTimeEl = document.getElementById('current-time');
+
+// โหลดข้อมูล agents จาก Main Process
 async function loadAgents() {
     try {
         agents = await window.electronAPI.getAgents();
@@ -11,10 +21,9 @@ async function loadAgents() {
     }
 }
 
-// แสดง agents
+// แสดงผล agents บนหน้าจอ
 function renderAgents() {
-    const grid = document.getElementById('agents-grid');
-    grid.innerHTML = '';
+    agentsGrid.innerHTML = '';
     
     agents.forEach(agent => {
         const card = document.createElement('div');
@@ -28,16 +37,16 @@ function renderAgents() {
                 <button class="status-btn offline" onclick="updateStatus(${agent.id}, 'offline')">Offline</button>
             </div>
         `;
-        grid.appendChild(card);
+        agentsGrid.appendChild(card);
     });
 }
 
-// อัพเดทสถานะ (Lab 8.2 + 8.3)
+// อัพเดทสถานะของ agent
 async function updateStatus(agentId, status) {
     try {
         await window.electronAPI.updateAgentStatus(agentId, status);
         
-        // อัพเดทใน memory
+        // อัพเดทข้อมูลในหน่วยความจำ (memory)
         const agent = agents.find(a => a.id === agentId);
         if (agent) {
             agent.status = status;
@@ -45,7 +54,7 @@ async function updateStatus(agentId, status) {
             updateStats();
         }
     } catch (error) {
-        alert('Failed to update status');
+        console.error('Failed to update status:', error);
     }
 }
 
@@ -55,9 +64,9 @@ function updateStats() {
     const busy = agents.filter(a => a.status === 'busy').length;
     const offline = agents.filter(a => a.status === 'offline').length;
     
-    document.getElementById('available-count').textContent = available;
-    document.getElementById('busy-count').textContent = busy;
-    document.getElementById('offline-count').textContent = offline;
+    availableCountEl.textContent = available;
+    busyCountEl.textContent = busy;
+    offlineCountEl.textContent = offline;
 }
 
 // Export ข้อมูล (Lab 8.3)
@@ -65,10 +74,10 @@ async function exportData() {
     try {
         const result = await window.electronAPI.exportData(agents);
         if (result.success) {
-            alert(`Data exported to: ${result.path}`);
+            console.log(`Data exported to: ${result.path}`);
         }
     } catch (error) {
-        alert('Export failed');
+        console.error('Export failed:', error);
     }
 }
 
@@ -81,8 +90,8 @@ function refreshData() {
 // แสดงเวลา real-time (Lab 8.4)
 function updateTime() {
     const now = new Date();
-    const timeString = now.toLocaleTimeString();
-    document.getElementById('current-time').textContent = timeString;
+    const timeString = now.toLocaleTimeString('th-TH');
+    currentTimeEl.textContent = timeString;
 }
 
 // เริ่มต้นแอป
